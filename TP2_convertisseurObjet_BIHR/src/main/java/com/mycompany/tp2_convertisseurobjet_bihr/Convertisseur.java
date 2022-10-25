@@ -1,3 +1,5 @@
+package com.mycompany.tp2_convertisseurobjet_bihr;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -8,14 +10,14 @@
  * @author User
  */
 public class Convertisseur {
-    int nbconv=0;         // compte le nb de conversion
+    int nbconv;         // compte le nb de conversion
     double tKelvin;     //on initialise toutes les varibles correspondant aix temperatures
     double tCelcuis;
     double tFar;        //tFar=tFarehnheit
     
    
     public Convertisseur() {      
-            nbconv=0 ;              //on inistialise le nb de conv a 0
+            nbconv+=0 ;              //on inistialise le nb de conv a 0
             
         }
         
@@ -54,4 +56,4 @@ public double FarKelvin(double tFar){
 public String toString () {
  return "nb de conversions"+ nbconv;
 }
-}
+}                                                   //finalement dans cette calsse les calculs de nbconv servent a rien, le conteur est créer dans le main car plus simplé
