@@ -1,4 +1,7 @@
 
+import Armes.epee;
+import Armes.Baton;
+import Armes.Arme;
 import java.util.ArrayList;
 
 /*
