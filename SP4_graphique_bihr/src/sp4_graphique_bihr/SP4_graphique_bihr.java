@@ -9,12 +9,10 @@ package sp4_graphique_bihr;
  * @author User
  */
 public class SP4_graphique_bihr {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public static void main(String[] args){
+    Jeton JAu = new Jeton("jaune");
+    System.out.println(JAu.toString());
+    }    
     }
     
-}
+
