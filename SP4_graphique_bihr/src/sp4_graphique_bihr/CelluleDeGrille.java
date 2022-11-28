@@ -17,7 +17,7 @@ public class CelluleDeGrille {
         this.jetonCourant = null;
     }
 
-    public boolean presenceJeton(Jeton jetonCourant) {
+    public boolean presenceJeton() {
         if (jetonCourant==null){
             return false;
         }
@@ -25,7 +25,7 @@ public class CelluleDeGrille {
             return true;
     }
 
-    public void affecterJeton(Jeton jetonCourant) {
+    public void affecterJeton() {
         this.jetonCourant = jetonCourant;
     }
 
@@ -73,6 +73,38 @@ public class CelluleDeGrille {
         else {return false;} 
         
     }
+
+    public void placerDesintegrateur() {
+        this.avoirDesintegrateur = true;
+    }
+
+    public void supprimerDesintegrateur() {
+        this.avoirDesintegrateur = false;
+    }
+
+    public void activerTrouNoir() {
+        supprimerTrouNoir();
+        supprimerJeton();
+    }
     
-}
+@Override
+    public String toString(){
+        if (presenceJeton()==true){
+             if (jetonCourant.lireCouleur()=="rouge"){
+                 return "R";
+             if (jetonCourant.lireCouleur()=="jaune"){ 
+                 return "J";
+             }   
+        if (presenceTrouNoir()==true){
+          return "@"  
+        }
+        if (presenceDesintegrateur()==true){
+            return "D"
+        }
+        else{ return"";)
+    }
+        
+        
+ }   
+
 
