@@ -9,15 +9,68 @@ package sp4_graphique_bihr;
  * @author User
  */
 public class CelluleDeGrille {
-    private String jetonCourant;
-    //private boolean avoirTrouNoir;
-    //private boolean avoirDesintegrateur;
+    private Jeton   jetonCourant;
+    private boolean avoirTrouNoir;
+    private boolean avoirDesintegrateur;
 
-    public CelluleDeGrille(String jetonCourant) {
+    public CelluleDeGrille() {
         this.jetonCourant = null;
     }
+
+    public boolean presenceJeton(Jeton jetonCourant) {
+        if (jetonCourant==null){
+            return false;
+        }
+        else
+            return true;
+    }
+
+    public void affecterJeton(Jeton jetonCourant) {
+        this.jetonCourant = jetonCourant;
+    }
+
+    public String lirecouleurduJeton() {
+        if (jetonCourant == null){
+            return "vide";
+        }
+        else {
+            return jetonCourant.lireCouleur();
+        }
+    }
     
-    public presenceJeton() {
+      
+    
+
+    public void placerTrouNoir() {
+        this.avoirTrouNoir = true;
+    }
+
+    public void supprimerTrouNoir() {
+        this.avoirTrouNoir = false;
+    }
+
+    public boolean presenceTrouNoir() {
+        if (avoirTrouNoir==true){
+            return true;
+        }
+        else {return false;} 
+    }
+    
+    public Jeton recupererJeton(){
+        Jeton tempJ=jetonCourant;
+        jetonCourant=null;
+        return tempJ;
+    }
+    
+    public void supprimerJeton(){
+        jetonCourant=null;
+    }
+
+    public boolean presenceDesintegrateur() {
+        if (avoirDesintegrateur==true){
+            return true;
+        }
+        else {return false;} 
         
     }
     
