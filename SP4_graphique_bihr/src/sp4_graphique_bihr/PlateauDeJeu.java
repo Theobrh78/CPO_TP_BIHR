@@ -139,11 +139,22 @@ public class PlateauDeJeu {
     public void tasserColonne(int numcolone){
         for (int i=0; i<6; i++){
             if(i!=0){
-            grille[i][numcolone]=
+            grille[i-1][numcolone]=grille[i][numcolone];
                     }
         }
     }
-    
+     public boolean colonneRemplie(int numcolone){
+         int temp=0;
+         for (int i=0; i<6; i++){
+             if (grille[i][numcolone].presenceJeton()==true){
+                 temp+=1;
+             }
+         }
+             if (temp==6){
+                 return true;           
+         }
+             return false;
+     }    
     
     
     
