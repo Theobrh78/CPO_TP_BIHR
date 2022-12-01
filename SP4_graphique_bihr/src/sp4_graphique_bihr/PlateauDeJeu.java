@@ -155,7 +155,14 @@ public class PlateauDeJeu {
          }
              return false;
      }    
+
+    public void supprimerJeton(int x, int y) {
+        grille[x][y].supprimerJeton();
+    }
     
+    public void recupererJeton(int x, int y){
+        grille[x][y].recupererJeton();
+    }
     
     
 }
