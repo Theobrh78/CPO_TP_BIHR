@@ -12,8 +12,6 @@ public class PlateauDeJeu {
     CelluleDeGrille grille[][];
 
     public void PlateauDeJeu() {
-        this.grille = grille;
-        
         for (int i = 0; i<6; i++){
             for(int j=0; j<7; j++){
                 grille[i][j]=new CelluleDeGrille();
@@ -87,7 +85,7 @@ public class PlateauDeJeu {
         int quaad=0;
         for (int i = 0;  i<6; i++){
             for(int j=0; j<7; j++){
-                if (grille[j][i].lirecouleurduJeton()== coul){
+                if (grille[i][j].lirecouleurduJeton()== coul){
                   quaad=quaad+1;
                   if (quaad==4){
                       return true;
@@ -104,8 +102,9 @@ public class PlateauDeJeu {
     public boolean coloneGagnantePourCouleur(String coul){
         int quaad=0;
         for (int i = 0;  i<7; i++){
+            quaad=0;
             for(int j=0; j<6; j++){
-                if (grille[i][j].lirecouleurduJeton()== coul){
+                if (grille[j][i].lirecouleurduJeton()== coul){
                   quaad=quaad+1;
                   if (quaad==4){
                       return true;
