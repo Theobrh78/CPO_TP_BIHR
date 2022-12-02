@@ -20,7 +20,7 @@ public class joueur {
     public void setReserveJetons(ArrayList<Jeton> reserveJetons) {
         this.reserveJetons = null;
     }
-
+    
     public joueur(String joueur) {
         this.joueur = joueur;
         nombreDesintegrateurs=0;
@@ -49,7 +49,9 @@ public class joueur {
         reserveJetons.add(J);
     }
     
-    public void jouerJeton(){
+    public Jeton jouerJeton(){
+        Jeton J= reserveJetons.get(0);
         reserveJetons.remove(0);
+        return J;
     }
 }

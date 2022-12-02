@@ -12,15 +12,15 @@ public class PlateauDeJeu {
     CelluleDeGrille grille[][];
 
     public void PlateauDeJeu() {
-        for (int i = 0; i<6; i++){
-            for(int j=0; j<7; j++){
+        for (int i = 0; i<5; i++){
+            for(int j=0; j<6; j++){
                 grille[i][j]=new CelluleDeGrille();
             }
         }
     }
     public int ajouterJetonDansColonne(Jeton Jet, int Co){
         int numeroligne=0;
-        for (int L = 0; L<6 ; L++){
+        for (int L = 0; L<5 ; L++){
             if  (grille[L][Co].presenceJeton()==true) {
                 numeroligne = numeroligne+1 ;
                         }
@@ -83,8 +83,8 @@ public class PlateauDeJeu {
     
     public boolean ligneGagnantePourCouleur(String coul){
         int quaad=0;
-        for (int i = 0;  i<6; i++){
-            for(int j=0; j<7; j++){
+        for (int i = 0;  i<5; i++){
+            for(int j=0; j<6; j++){
                 if (grille[i][j].lirecouleurduJeton()== coul){
                   quaad=quaad+1;
                   if (quaad==4){
@@ -101,9 +101,9 @@ public class PlateauDeJeu {
     
     public boolean coloneGagnantePourCouleur(String coul){
         int quaad=0;
-        for (int i = 0;  i<7; i++){
+        for (int i = 0;  i<6; i++){
             quaad=0;
-            for(int j=0; j<6; j++){
+            for(int j=0; j<5; j++){
                 if (grille[j][i].lirecouleurduJeton()== coul){
                   quaad=quaad+1;
                   if (quaad==4){
@@ -136,7 +136,7 @@ public class PlateauDeJeu {
     }
 
     public void tasserColonne(int numcolone){
-        for (int i=0; i<6; i++){
+        for (int i=0; i<5; i++){
             if(i!=0){
             grille[i-1][numcolone]=grille[i][numcolone];
                     }
@@ -144,7 +144,7 @@ public class PlateauDeJeu {
     }
      public boolean colonneRemplie(int numcolone){
          int temp=0;
-         for (int i=0; i<6; i++){
+         for (int i=0; i<5; i++){
              if (grille[i][numcolone].presenceJeton()==true){
                  temp+=1;
              }
