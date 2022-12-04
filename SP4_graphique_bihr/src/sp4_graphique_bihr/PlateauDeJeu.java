@@ -33,7 +33,7 @@ public class PlateauDeJeu {
 
     public boolean grilleRemplie() {
         int numeroligne1=0;
-        for (int L = 0; L<6 ; L++){
+        for (int L = 0; L<5 ; L++){
             for (int i = 0; i<6 ; i++){
             if  (grille[L][i].presenceJeton()==true) {
                 numeroligne1 = numeroligne1+1 ;
@@ -56,8 +56,8 @@ public class PlateauDeJeu {
     //}
     
     public String afficherGrilleSurConsole(){
-        for (int x = 0; x<6; x++){
-            for(int y=0; y<7; y++){
+        for (int x = 0; x<5; x++){
+            for(int y=0; y<6; y++){
         System.out.println(" "+ grille[x][y].toString());
         if (x%6==0){
             System.out.println("\n");
@@ -119,20 +119,37 @@ public class PlateauDeJeu {
     }
     
     public boolean diagonaleMontanteGagnantePourCouleur(String coul){
-        
+        for (int i=0 ; i<2;i++){
+            for (int j=0;j<3;j++){
+                if (grille[i][j].lirecouleurduJeton().equals(coul) && grille[i+1][j+1].lirecouleurduJeton().equals(coul) && (grille[i+2][j+2].lirecouleurduJeton().equals(coul)&& grille[i+3][j+3].lirecouleurduJeton().equals(coul))){
+                    return true; 
+                }
+            }
+        }
         return false;
         
     }
     
-    public boolean diagonaleDesencanteGagnantePourCouleur(String coul){
-        
-        return false;
+    public boolean diagonaleDesencanteGagnantePourCouleur(String coul){ 
+         for (int i=3 ; i<5;i++){
+            for (int j=0;j<3;j++){
+                if (grille[i][j].lirecouleurduJeton().equals(coul) && grille[i-1][j-1].lirecouleurduJeton().equals(coul) && (grille[i-2][j-2].lirecouleurduJeton().equals(coul)&& grille[i-3][j-3].lirecouleurduJeton().equals(coul))){
+                    return true;
+                }
+            }
+        }
+
+       return false; 
         
     }
     
     
-    public boolean getGrilleetreGagnantePourCouleur(){
+    public boolean getGrilleetreGagnantePourCouleur(String coul){
+        if (grille[][].diagonaleDesencanteGagnantePourCouleur(coul))==true) {
+        
+
         return true;
+    }
     }
 
     public void tasserColonne(int numcolone){
@@ -154,7 +171,36 @@ public class PlateauDeJeu {
          }
              return false;
      }    
+     
+     public boolean presenceTrouNoir(int x, int y){
+                if (grille[x][y].presenceTrouNoir()==true){
+                    return true;
+            }
+            return false;
+     }
 
+     public void placerTrouNoir(int x, int y){
+         grille[x][y].placerTrouNoir();
+     }
+     
+     public void supprimerTrouNoir(int x, int y){
+         grille[x][y].supprimerTrouNoir();
+     }
+     
+     public void placerDesintegrateur(int x,int y){
+         grille[x][y].placerDesintegrateur();
+     }
+     
+     public void supprimerDesintegrateur(int x,int y){
+         grille[x][y].supprimerDesintegrateur();
+     }
+     
+     public boolean presenceDesintegrateur (int x, int y){
+         if (grille[x][y].presenceDesintegrateur()==true){
+             return true;
+         }
+         return false;
+     } 
     public void supprimerJeton(int x, int y) {
         grille[x][y].supprimerJeton();
     }
