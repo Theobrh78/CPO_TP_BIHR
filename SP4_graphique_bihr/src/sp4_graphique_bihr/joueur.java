@@ -21,7 +21,7 @@ public class joueur {
         this.reserveJetons = null;
     }
     
-    public joueur(String joueur) {
+    public joueur(String joueur) {  
         this.joueur = joueur;
         nombreDesintegrateurs=0;
     }
@@ -54,4 +54,4 @@ public class joueur {
         reserveJetons.remove(0);
         return J;
     }
-//}
+}

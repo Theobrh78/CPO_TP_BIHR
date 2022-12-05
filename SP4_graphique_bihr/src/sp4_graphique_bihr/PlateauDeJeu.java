@@ -144,13 +144,13 @@ public class PlateauDeJeu {
     }
     
     
-    public boolean getGrilleetreGagnantePourCouleur(String coul){
-        if (grille[][].diagonaleDesencanteGagnantePourCouleur(coul))==true) {
+   // public boolean getGrilleetreGagnantePourCouleur(String coul){
+       // if (grille[][].diagonaleDesencanteGagnantePourCouleur(coul))==true) {
         
 
-        return true;
-    }
-    }
+        //return true;
+    //}
+    //}
 
     public void tasserColonne(int numcolone){
         for (int i=0; i<5; i++){

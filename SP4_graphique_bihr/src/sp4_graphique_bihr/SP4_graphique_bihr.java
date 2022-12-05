@@ -10,8 +10,12 @@ package sp4_graphique_bihr;
  */
 public class SP4_graphique_bihr {
     public static void main(String[] args){
-    Jeton JAu = new Jeton("jaune");
-    System.out.println(JAu.toString());
+    String jo="jou1";
+    String jol="joull";
+    joueur j1 = new joueur(jo);
+    joueur j2 = new joueur(jol);
+    partie pa = new partie(j1,j2);
+    pa.lancerpartie();
     }    
     }
     
