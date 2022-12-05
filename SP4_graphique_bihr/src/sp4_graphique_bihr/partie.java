@@ -47,4 +47,51 @@ public class partie {
         }
     }
     
-}
+    public void placerTrousNoirsEtDesintegrateurs(){
+        int i=0;
+        while (i<3){
+        Random r = new Random();
+        int a = r.nextInt(6);
+        Random c = new Random();
+        int b = c.nextInt(7);
+            if(plateau.presenceTrouNoir(a, b)==false&&plateau.presenceDesintegrateur(a, b)==false){
+             plateau.placerTrouNoir(a-1, b-1);
+             plateau.placerDesintegrateur(a-1, b-1);
+             i=i+1;
+            }
+        }
+        int j=0;
+        while (j<2){
+        Random r = new Random();
+        int c = r.nextInt(6);
+        Random d = new Random();
+        int e = d.nextInt(7);
+        if(plateau.presenceTrouNoir(c, e)==false&&plateau.presenceDesintegrateur(c, e)==false){
+            plateau.placerDesintegrateur(c, e);
+            j=j+1;
+        }
+    }
+        int y=0;
+        while(y<2){
+        Random r = new Random();
+        int c = r.nextInt(6);
+        Random d = new Random();
+        int e = d.nextInt(7);
+        if(plateau.presenceTrouNoir(c, e)==false&&plateau.presenceDesintegrateur(c, e)==false){
+            plateau.placerTrouNoir(c, e);
+            y=y+1;
+         }
+        }
+    }
+    
+   
+    public void initialiserPartie(){
+        attribuerCouleurAuxJoueurs();
+        creerEtAffecterJeton(joueurCourant);
+        placerTrousNoirsEtDesintegrateurs();
+    }
+    public void lancerpartie(){
+        initialiserPartie();
+        system.out
+    }
+ }
