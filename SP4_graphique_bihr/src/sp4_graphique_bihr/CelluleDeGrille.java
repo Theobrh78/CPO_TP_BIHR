@@ -9,7 +9,8 @@ package sp4_graphique_bihr;
  * @author User
  */
 public class CelluleDeGrille {
-    private Jeton   jetonCourant;
+
+    private Jeton jetonCourant;
     private boolean avoirTrouNoir;
     private boolean avoirDesintegrateur;
 
@@ -18,11 +19,11 @@ public class CelluleDeGrille {
     }
 
     public boolean presenceJeton() {
-        if (jetonCourant==null){
+        if (jetonCourant == null) {
             return false;
-        }
-        else
+        } else {
             return true;
+        }
     }
 
     public void affecterJeton() {
@@ -30,16 +31,12 @@ public class CelluleDeGrille {
     }
 
     public String lirecouleurduJeton() {
-        if (jetonCourant == null){
+        if (jetonCourant == null) {
             return "vide";
-        }
-        else {
+        } else {
             return jetonCourant.lireCouleur();
         }
     }
-    
-      
-    
 
     public void placerTrouNoir() {
         this.avoirTrouNoir = true;
@@ -50,28 +47,30 @@ public class CelluleDeGrille {
     }
 
     public boolean presenceTrouNoir() {
-        if (avoirTrouNoir==true){
+        if (avoirTrouNoir == true) {
             return true;
+        } else {
+            return false;
         }
-        else {return false;} 
     }
-    
-    public Jeton recupererJeton(){
-        Jeton tempJ=jetonCourant;
-        jetonCourant=null;
+
+    public Jeton recupererJeton() {
+        Jeton tempJ = jetonCourant;
+        jetonCourant = null;
         return tempJ;
     }
-    
-    public void supprimerJeton(){
-        jetonCourant=null;
+
+    public void supprimerJeton() {
+        jetonCourant = null;
     }
 
     public boolean presenceDesintegrateur() {
-        if (avoirDesintegrateur==true){
+        if (avoirDesintegrateur == true) {
             return true;
+        } else {
+            return false;
         }
-        else {return false;} 
-        
+
     }
 
     public void placerDesintegrateur() {
@@ -86,25 +85,26 @@ public class CelluleDeGrille {
         supprimerTrouNoir();
         supprimerJeton();
     }
-    
-@Override
-    public String toString(){
-        if (presenceJeton()==true){
-             if (jetonCourant.lireCouleur()=="rouge"){
-                 return "R";
-             if (jetonCourant.lireCouleur()=="jaune"){ 
-                 return "J";
-             }   
-        if (presenceTrouNoir()==true){
-          return "@"  
+
+    @Override
+    public String toString() {
+        if (presenceJeton() == true) {
+            if (jetonCourant.lireCouleur() == "rouge") {
+                return "R";
+            }
+            if (jetonCourant.lireCouleur() == "jaune") {
+                return "J";
+            }
+            if (presenceTrouNoir() == true) {
+                return "@";
+            }
+            if (presenceDesintegrateur() == true) {
+                return "D";
+            } else {
+                return "";
+            }
         }
-        if (presenceDesintegrateur()==true){
-            return "D"
-        }
-        else{ return"";)
+
+        return "erreur";
     }
-        
-        
- }   
-
-
+}
