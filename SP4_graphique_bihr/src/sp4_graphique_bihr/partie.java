@@ -103,19 +103,13 @@ public class partie {
         int i = 0;
         int mode;
         int colonne;
-        String Nomjoueur="";
         Jeton jetoncourant;
         while (partieencour==true){
             p=i%2;
             joueurCourant=listeJoueurs[p];
             i=i+1;
-            if (p==0){
-                Nomjoueur=J1.lireCouleur();
-            }
-            if (p==1){
-                Nomjoueur=J2.lireCouleur(); 
-            }
-            System.out.println(Nomjoueur +  " peut jouer");
+  
+            System.out.println(listeJoueurs[p].lirenom() +  " peut jouer");
             System.out.println("pour info, voici l'etat de la grille de jeu :");
             plateau.afficherGrilleSurConsole();
             System.out.println("entrez 1 si vous voulez palcer un jeton :");
@@ -129,8 +123,8 @@ public class partie {
                         plateau.ajouterJetonDansColonne(colonne-1, jetoncourant);
                         System.out.println("il vous restes" + joueurCourant.nombreDeJetons() + "jetons");               
                     }
-                    if (plateau.coloneGagnantePourCouleur(joueurCourant.lireCouleur())==true||plateau.ligneGagnantePourCouleur(joueurCourant.lireCouleur())==true||plateau.diagonaleDesencanteGagnantePourCouleur(joueurCourant.lireCouleur())==true||plateau.diagonaleMontanteGagnantePourCouleur(joueurCourant.lireCouleur())==true){
-                       System.out.println("bravo 1" + Nomjoueur + " a gagné !");
+                    if (plateau.coloneGagnantePourCouleur(joueurCourant.lireCouleur())==true||plateau.ligneGagnantePourCouleur(joueurCourant.lireCouleur())==true||plateau.diagonaleDescendanteligneGagnantePourCouleur(joueurCourant.lireCouleur())==true||plateau.diagonaleMontanteGagnantePourCouleur(joueurCourant.lireCouleur())==true){
+                       System.out.println("bravo 1" + listeJoueurs[p].lirenom() + " est le vainqueur!");
                         partieencour=false;
                     }
                     

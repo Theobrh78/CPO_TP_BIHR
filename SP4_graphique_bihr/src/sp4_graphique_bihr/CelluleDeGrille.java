@@ -38,8 +38,9 @@ public class CelluleDeGrille {
         }
     }
 
-    public void placerTrouNoir() {
+    public boolean placerTrouNoir() {
         this.avoirTrouNoir = true;
+        return true;
     }
 
     public void supprimerTrouNoir() {
@@ -95,17 +96,18 @@ public class CelluleDeGrille {
             if (jetonCourant.lireCouleur() == "jaune") {
                 return "J";
             }
+            else {
+                return "";
+            }
+        }
             if (presenceTrouNoir() == true) {
                 return "@";
             }
             if (presenceDesintegrateur() == true) {
                 return "D";
-            } else {
-                return "";
-            }
-        }
+            } 
         
-
+        
         return ".";
     }
 }

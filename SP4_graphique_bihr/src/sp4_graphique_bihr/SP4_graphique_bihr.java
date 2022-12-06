@@ -15,7 +15,7 @@ public class SP4_graphique_bihr {
     
     partie pa = new partie(j1,j2);
     pa.initialiserPartie();
-    pa.lancerpartie(j1,j2);
+   pa.lancerpartie(j1,j2);
     }    
     }
     
