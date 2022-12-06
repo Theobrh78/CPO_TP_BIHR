@@ -9,32 +9,36 @@ package sp4_graphique_bihr;
  * @author User
  */
 public class PlateauDeJeu {
-    CelluleDeGrille grille[][];
+    CelluleDeGrille[][] grille = new CelluleDeGrille[6][7];
 
-    public void PlateauDeJeu() {
-        for (int i = 0; i<5; i++){
-            for(int j=0; j<6; j++){
+    public PlateauDeJeu() {
+        for (int i = 0; i<6; i++){
+            for(int j=0; j<7; j++){
                 grille[i][j]=new CelluleDeGrille();
             }
         }
     }
-    public int ajouterJetonDansColonne(Jeton Jet, int Co){
+    public int ajouterJetonDansColonne(int Co, Jeton jetonCourant){
         int numeroligne=0;
-        for (int L = 0; L<5 ; L++){
+        int temp=0;
+        for (int L = 0; L<6 ; L++){
             if  (grille[L][Co].presenceJeton()==true) {
                 numeroligne = numeroligne+1 ;
                         }
             else {
-               grille[L][Co].affecterJeton();
+               temp=1;
             }
+        }
+        if (temp==1){
+            grille[numeroligne][Co].affecterJeton(jetonCourant);
         }
         return numeroligne;
     }
 
     public boolean grilleRemplie() {
         int numeroligne1=0;
-        for (int L = 0; L<5 ; L++){
-            for (int i = 0; i<6 ; i++){
+        for (int L = 0; L<6 ; L++){
+            for (int i = 0; i<7 ; i++){
             if  (grille[L][i].presenceJeton()==true) {
                 numeroligne1 = numeroligne1+1 ;
             }
@@ -56,15 +60,12 @@ public class PlateauDeJeu {
     //}
     
     public String afficherGrilleSurConsole(){
-        for (int x = 0; x<5; x++){
-            for(int y=0; y<6; y++){
-        System.out.println(" "+ grille[x][y].toString());
-        if (x%6==0){
-            System.out.println("\n");
-        }
+        for (int x = 5; x>=0; x--){
+            for(int y=0; y<7; y++){
+        System.out.print(" "+ grille[x][y].toString());
 
             }
-        
+    System.out.println("");
     }
         return null;
 }
@@ -83,8 +84,8 @@ public class PlateauDeJeu {
     
     public boolean ligneGagnantePourCouleur(String coul){
         int quaad=0;
-        for (int i = 0;  i<5; i++){
-            for(int j=0; j<6; j++){
+        for (int i = 0;  i<6; i++){
+            for(int j=0; j<7; j++){
                 if (grille[i][j].lirecouleurduJeton()== coul){
                   quaad=quaad+1;
                   if (quaad==4){
@@ -101,9 +102,9 @@ public class PlateauDeJeu {
     
     public boolean coloneGagnantePourCouleur(String coul){
         int quaad=0;
-        for (int i = 0;  i<6; i++){
+        for (int i = 0;  i<7; i++){
             quaad=0;
-            for(int j=0; j<5; j++){
+            for(int j=0; j<6; j++){
                 if (grille[j][i].lirecouleurduJeton()== coul){
                   quaad=quaad+1;
                   if (quaad==4){
@@ -118,29 +119,28 @@ public class PlateauDeJeu {
     return false;
     }
     
-    public boolean diagonaleMontanteGagnantePourCouleur(String coul){
-        for (int i=0 ; i<2;i++){
+    public boolean diagonaleMontanteGagnantePourCouleur(String couleur){
+       for (int i=0 ; i<2;i++){
             for (int j=0;j<3;j++){
-                if (grille[i][j].lirecouleurduJeton().equals(coul) && grille[i+1][j+1].lirecouleurduJeton().equals(coul) && (grille[i+2][j+2].lirecouleurduJeton().equals(coul)&& grille[i+3][j+3].lirecouleurduJeton().equals(coul))){
+                if (grille[i][j].lirecouleurduJeton().equals(couleur) && grille[i+1][j+1].lirecouleurduJeton().equals(couleur) && (grille[i+2][j+2].lirecouleurduJeton().equals(couleur)&& grille[i+3][j+3].lirecouleurduJeton().equals(couleur))){
                     return true; 
                 }
             }
         }
-        return false;
-        
+       return false; 
+
     }
     
-    public boolean diagonaleDesencanteGagnantePourCouleur(String coul){ 
-         for (int i=3 ; i<5;i++){
+     public boolean diagonaleDescendanteligneGagnantePourCouleur(String couleur){
+       for (int i=3 ; i<5;i++){
             for (int j=0;j<3;j++){
-                if (grille[i][j].lirecouleurduJeton().equals(coul) && grille[i-1][j-1].lirecouleurduJeton().equals(coul) && (grille[i-2][j-2].lirecouleurduJeton().equals(coul)&& grille[i-3][j-3].lirecouleurduJeton().equals(coul))){
+                if (grille[i][j].lirecouleurduJeton().equals(couleur) && grille[i-1][j-1].lirecouleurduJeton().equals(couleur) && (grille[i-2][j-2].lirecouleurduJeton().equals(couleur)&& grille[i-3][j-3].lirecouleurduJeton().equals(couleur))){
                     return true;
                 }
             }
         }
-
        return false; 
-        
+
     }
     
     
@@ -153,7 +153,7 @@ public class PlateauDeJeu {
     //}
 
     public void tasserColonne(int numcolone){
-        for (int i=0; i<5; i++){
+        for (int i=0; i<6; i++){
             if(i!=0){
             grille[i-1][numcolone]=grille[i][numcolone];
                     }
@@ -161,7 +161,7 @@ public class PlateauDeJeu {
     }
      public boolean colonneRemplie(int numcolone){
          int temp=0;
-         for (int i=0; i<5; i++){
+         for (int i=0; i<6; i++){
              if (grille[i][numcolone].presenceJeton()==true){
                  temp+=1;
              }

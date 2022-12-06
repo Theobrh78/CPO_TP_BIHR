@@ -20,6 +20,11 @@ public class joueur {
     public void setReserveJetons(ArrayList<Jeton> reserveJetons) {
         this.reserveJetons = null;
     }
+
+    public String lirenom() {
+        return joueur;
+    }
+    
     
     public joueur(String joueur) {  
         this.joueur = joueur;
@@ -31,7 +36,7 @@ public class joueur {
         
     }
 
-    public String lireCouleur() {
+    public String lireCouleur( ) {
         if (couleur=="rouge"){
         return "rouge";
         }

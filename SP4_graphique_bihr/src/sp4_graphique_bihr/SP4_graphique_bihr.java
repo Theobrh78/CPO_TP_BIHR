@@ -10,12 +10,12 @@ package sp4_graphique_bihr;
  */
 public class SP4_graphique_bihr {
     public static void main(String[] args){
-    String jo="jou1";
-    String jol="joull";
-    joueur j1 = new joueur(jo);
-    joueur j2 = new joueur(jol);
+    joueur j1 = new joueur("Theo");
+    joueur j2 = new joueur("Emilien");
+    
     partie pa = new partie(j1,j2);
-    pa.lancerpartie();
+    pa.initialiserPartie();
+    pa.lancerpartie(j1,j2);
     }    
     }
     

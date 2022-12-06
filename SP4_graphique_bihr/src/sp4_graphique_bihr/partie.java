@@ -26,24 +26,22 @@ public class partie {
     }    
     
     
-    public void attribuerCouleurAuxJoueurs(String j1, String j2){
+    public void attribuerCouleurAuxJoueurs(){
        Random r = new Random();
-       int a = r.nextInt(2);
+       int a = r.nextInt(1);
        if (a==1){
            listeJoueurs[0].affecterCouleur("rouge");
-            System.out.println("le joueur "+ j1 +" a les rouges");
-       }
-       else {
-           listeJoueurs[1].affecterCouleur("jaune");
-           System.out.println("le joueur "+ j2 +" a les jaunes");
+            System.out.println("le joueur "+ listeJoueurs[0].lirenom() +" a les rouges");
+           
+            listeJoueurs[1].affecterCouleur("jaune");
+           System.out.println("le joueur "+ listeJoueurs[1].lirenom() +" a les jaunes");
        } 
-       if (a==2){
+       if (a==0){
            listeJoueurs[1].affecterCouleur("rouge");
-           System.out.println("le joueur "+ j2 +" a les rouges");
-       }
-       else {
+           System.out.println("le joueur "+ listeJoueurs[1].lirenom() +" a les rouges");
+      
            listeJoueurs[0].affecterCouleur("jaune");
-           System.out.println("le joueur "+ j1 +" a les jaunes");
+           System.out.println("le joueur "+ listeJoueurs[0].lirenom() +" a les jaunes");
     }
     }
     
@@ -57,12 +55,12 @@ public class partie {
         int i=0;
         while (i<3){
         Random r = new Random();
-        int a = r.nextInt(6);
+        int a = r.nextInt(5);
         Random c = new Random();
-        int b = c.nextInt(7);
+        int b = c.nextInt(6);
             if((plateau.presenceTrouNoir(a, b)==false) && (plateau.presenceDesintegrateur(a, b)==false)){
-             plateau.placerTrouNoir(a-1, b-1);
-             plateau.placerDesintegrateur(a-1, b-1);
+             plateau.placerTrouNoir(a, b);
+             plateau.placerDesintegrateur(a, b);
              i=i+1;
             }
         }
@@ -80,9 +78,9 @@ public class partie {
         int y=0;
         while(y<2){
         Random r = new Random();
-        int c = r.nextInt(6);
+        int c = r.nextInt(5);
         Random d = new Random();
-        int e = d.nextInt(7);
+        int e = d.nextInt(6);
         if(plateau.presenceTrouNoir(c, e)==false&&plateau.presenceDesintegrateur(c, e)==false){
             plateau.placerTrouNoir(c, e);
             y=y+1;
@@ -91,11 +89,11 @@ public class partie {
     }
     
    
-    public void initialiserPartie(String j1, String j2){
-        attribuerCouleurAuxJoueurs(j1,j2);
+    public void initialiserPartie(){
+        attribuerCouleurAuxJoueurs();
         creerEtAffecterJeton(listeJoueurs[0]);
         creerEtAffecterJeton(listeJoueurs[1]);
-        //placerTrousNoirsEtDesintegrateurs();
+        placerTrousNoirsEtDesintegrateurs();
     }
     
     public void lancerpartie(joueur J1, joueur J2){

@@ -26,7 +26,7 @@ public class CelluleDeGrille {
         }
     }
 
-    public void affecterJeton() {
+    public void affecterJeton( Jeton jetonCourant) {
         this.jetonCourant = jetonCourant;
     }
 
@@ -104,7 +104,8 @@ public class CelluleDeGrille {
                 return "";
             }
         }
+        
 
-        return "erreur";
+        return ".";
     }
 }
