@@ -108,11 +108,12 @@ public class partie {
             p=i%2;
             joueurCourant=listeJoueurs[p];
             i=i+1;
+            int ligne;
   
             System.out.println(listeJoueurs[p].lirenom() +  " peut jouer");
             System.out.println("pour info, voici l'etat de la grille de jeu :");
             plateau.afficherGrilleSurConsole();
-            System.out.println("entrez 1 si vous voulez palcer un jeton :");
+            System.out.println("entrez 1 si vous voulez palcer un jeton, 2 si vous voulez recuperer un jeton :");
             Scanner sc=new Scanner(System.in);
             mode = sc.nextInt();
                     
@@ -120,8 +121,25 @@ public class partie {
                         System.out.println("indiquez la colone sur laquelle vous voulez placer un jeton");
                         colonne=sc.nextInt();
                         jetoncourant=joueurCourant.jouerJeton();
-                        plateau.ajouterJetonDansColonne(colonne-1, jetoncourant);
+                        ligne=plateau.ajouterJetonDansColonne(colonne-1, jetoncourant);
+                        if (plateau.presenceTrouNoir(ligne, colonne-1)==true){
+                            plateau.supprimerJeton(ligne, colonne-1);
+                            plateau.supprimerTrouNoir(ligne, colonne-1);
+                        }
                         System.out.println("il vous restes" + joueurCourant.nombreDeJetons() + "jetons");               
+                    }
+                    if (mode==2){
+                        System.out.println("Veuillez indiquer la ligne puis la colone du jeton");
+                        colonne=sc.nextInt();
+                        ligne=sc.nextInt();
+                        if (plateau.presenceJeton(ligne, colonne)==true){
+                        plateau.recupererJeton(ligne, colonne-1);
+                        plateau.supprimerJeton(ligne,colonne-1);
+                        }
+                        else {
+                         System.out.println("Vous ne possedez pas de jetons a cet endroit");   
+                        }
+                                
                     }
                     if (plateau.coloneGagnantePourCouleur(joueurCourant.lireCouleur())==true||plateau.ligneGagnantePourCouleur(joueurCourant.lireCouleur())==true||plateau.diagonaleDescendanteligneGagnantePourCouleur(joueurCourant.lireCouleur())==true||plateau.diagonaleMontanteGagnantePourCouleur(joueurCourant.lireCouleur())==true){
                        System.out.println("bravo 1" + listeJoueurs[p].lirenom() + " est le vainqueur!");
