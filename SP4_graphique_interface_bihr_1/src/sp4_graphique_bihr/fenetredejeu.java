@@ -4,6 +4,9 @@
  */
 package sp4_graphique_bihr;
 
+import java.util.Random;
+import java.util.Scanner;
+
 /**
  *
  * @author User
@@ -13,8 +16,20 @@ public class fenetredejeu extends javax.swing.JFrame {
     /**
      * Creates new form fenetredejeu
      */
+    private joueur listeJoueurs[] = new joueur[2];
+    private joueur joueurCourant;
+    private PlateauDeJeu plateau = new PlateauDeJeu();
+
     public fenetredejeu() {
         initComponents();
+        panneau_info_joueur.setVisible(false);
+        panneau_info_partie.setVisible(false);
+        for (int i = 5; i >= 0; i--) {
+            for (int j = 0; j < 7; j++) {
+                Cellule_graphique cellGraph = new Cellule_graphique(plateau.grille[i][j]);
+                panneau_grille.add(cellGraph);
+            }
+        }
     }
 
     /**
@@ -57,7 +72,6 @@ public class fenetredejeu extends javax.swing.JFrame {
         nom_joueur_2 = new javax.swing.JTextField();
         nom_joueur_1 = new javax.swing.JTextField();
         btn_start = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
         panneau_info_partie = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -177,21 +191,12 @@ public class fenetredejeu extends javax.swing.JFrame {
         panneau_creation_partie.add(nom_joueur_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 100, 20));
 
         btn_start.setText("Démarrer partie");
-        btn_start.setActionCommand("Démarrer partie");
         btn_start.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_startActionPerformed(evt);
             }
         });
         panneau_creation_partie.add(btn_start, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, -1, -1));
-
-        jButton6.setText("jButton6");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-        panneau_creation_partie.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, -1, -1));
 
         getContentPane().add(panneau_creation_partie, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 20, 240, 100));
 
@@ -256,6 +261,9 @@ public class fenetredejeu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_startActionPerformed
+        panneau_info_joueur.setVisible(true);
+        panneau_info_partie.setVisible(true);
+        initialiserPartie();
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_startActionPerformed
 
@@ -266,10 +274,6 @@ public class fenetredejeu extends javax.swing.JFrame {
     private void nom_joueur_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nom_joueur_2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nom_joueur_2ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
 
     private void btn_col_0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_0ActionPerformed
         // TODO add your handling code here:
@@ -317,6 +321,90 @@ public class fenetredejeu extends javax.swing.JFrame {
             }
         });
     }
+    public void attribuerCouleurAuxJoueurs(){
+       Random r = new Random();
+       int a = r.nextInt(1);
+       if (a==1){
+           listeJoueurs[0].affecterCouleur("rouge");
+            //System.out.println("le joueur "+ listeJoueurs[0].lirenom() +" a les rouges");
+           
+            listeJoueurs[1].affecterCouleur("jaune");
+          // System.out.println("le joueur "+ listeJoueurs[1].lirenom() +" a les jaunes");
+       } 
+       if (a==0){
+           listeJoueurs[1].affecterCouleur("rouge");
+           //System.out.println("le joueur "+ listeJoueurs[1].lirenom() +" a les rouges");
+      
+           listeJoueurs[0].affecterCouleur("jaune");
+           //System.out.println("le joueur "+ listeJoueurs[0].lirenom() +" a les jaunes");
+    }
+    }
+    public void creerEtAffecterJeton(joueur J){
+        for (int i=0 ; i<30; i++){
+        J.ajouterJeton(new Jeton (J.lireCouleur()));
+        }
+    }
+    public void placerTrousNoirsEtDesintegrateurs(){
+        int i=0;
+        while (i<3){
+        Random r = new Random();
+        int a = r.nextInt(5);
+        Random c = new Random();
+        int b = c.nextInt(6);
+            if((plateau.presenceTrouNoir(a, b)==false) && (plateau.presenceDesintegrateur(a, b)==false)){
+             plateau.placerTrouNoir(a, b);
+             plateau.placerDesintegrateur(a, b);
+             i=i+1;
+            }
+        }
+        int j=0;
+        while (j<2){
+        Random r = new Random();
+        int c = r.nextInt(6);
+        Random d = new Random();
+        int e = d.nextInt(7);
+        if(plateau.presenceTrouNoir(c, e)==false&&plateau.presenceDesintegrateur(c, e)==false){
+            plateau.placerDesintegrateur(c, e);
+            j=j+1;
+        }
+    }
+        int y=0;
+        while(y<2){
+        Random r = new Random();
+        int c = r.nextInt(5);
+        Random d = new Random();
+        int e = d.nextInt(6);
+        if(plateau.presenceTrouNoir(c, e)==false&&plateau.presenceDesintegrateur(c, e)==false){
+            plateau.placerTrouNoir(c, e);
+            y=y+1;
+         }
+        }
+    }
+    
+   
+    public void initialiserPartie(){
+        plateau.vidergrille();
+        String nomJoueur1 = nom_joueur_1.getText();
+        joueur J1= new joueur(nomJoueur1);
+        
+        String nomJoueur2 = nom_joueur_2.getText();
+        joueur J2= new joueur(nomJoueur2);
+        listeJoueurs[0]=J1;
+        listeJoueurs[1]=J2;
+        
+        
+        attribuerCouleurAuxJoueurs();
+        
+        System.out.println(J1.lirenom()+ " est de couleur "+ J1.lireCouleur()) ;
+        System.out.println(J2.lirenom()+ " est de couleur "+ J2.lireCouleur()) ;
+        
+        creerEtAffecterJeton(listeJoueurs[0]);
+        creerEtAffecterJeton(listeJoueurs[1]);
+        placerTrousNoirsEtDesintegrateurs();
+    }
+    
+    
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_col_0;
@@ -327,7 +415,6 @@ public class fenetredejeu extends javax.swing.JFrame {
     private javax.swing.JButton btn_col_5;
     private javax.swing.JButton btn_col_6;
     private javax.swing.JButton btn_start;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
